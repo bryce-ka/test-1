@@ -1,0 +1,165 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+<div class="accordion " id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Search Filters
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <strong>Apply filters below, overfiltering may lead to no results.</strong> 
+        
+       <div class = "row">
+        <div class="col">
+          <div class = card card-body">
+            <form method="get">
+              {{filter.form}}
+          </div>
+        </div>
+        <div class = " card card-footer ">
+              <button class=" btn btn-primary" type ="submit">
+                Search
+              </button>
+            </form>
+        </div>
+        
+
+       </div>
+        
+      </form>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<div>
+  <hr my-2 />
+  {%if jobs %}
+  <div class="row row-cols-1 row-cols-md-2 g-4 mx-3 my-1">
+    {% for job in jobs %}
+    {% if forloop.counter|divisibleby:2 %}
+    <div class="col">
+      <div class="card h-100">
+        
+        <div class="card-body">
+          <h5 class="card-title"><a href="{% url 'job-detail' job.slug %}">
+            <!-- fix remote in title of card  -->
+            <b>{{job.title}} ({{job.job_type}})</b>
+          </a></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><p style="font-size: 17px">{{job.company}} | {{job.location}} {% if job.remote is 'Yes'  %} ({{job.remote}}) {% endif %}  </p></h6>
+
+
+          <p class="card-text" style="font-size: 15px" > {{job.description|truncatewords:30}} -
+            <a href="{% url 'job-detail' job.slug %}">Read More</a>
+          </p>
+        
+        </div>
+        <div class="card-footer">
+
+          <span style="font-size: 14px"
+            >a {{job.funding_stage}} company | Posted on {{job.date_posted|date:"F d, Y"}}</span>
+                </div>
+    </div>
+  </div>
+    {% else %}
+
+
+    <div class="col">
+      <div class="card h-100">
+        
+        <div class="card-body">
+          <h5 class="card-title"><a href="{% url 'job-detail' job.slug %}">
+            <!-- fix remote in title of card  -->
+            <b>{{job.title}} ({{job.job_type}})</b>
+          </a></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><p style="font-size: 17px">{{job.company}} | {{job.location}} {% if job.remote is 'Yes'  %} ({{job.remote}}) {% endif %}  </p></h6>
+          <p>Salary range: {{job.salary_range}}</p>
+
+
+          <p class="card-text" style="font-size: 15px" > {{job.description|truncatewords:30}} -
+            <a href="{% url 'job-detail' job.slug %}">Read More</a>
+          </p>
+        
+        </div>
+        <div class="card-footer">
+
+          <span style="font-size: 14px"
+            > Company funding stage: {{job.funding_stage}}  | Posted on {{job.date_posted|date:"F d, Y"}}</span>
+                </div>
+    </div>
+  </div>
+    <!-- <div class="card">
+      <div class="card-header">
+        OOPS :(
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">No Jobs Found </h5>
+        <p class="card-text">It looks like no jobs have been posted yet. Come back later to see if there are new posts.</p>
+      </div>
+    </div> -->
+    {% endif %}
+    {% endfor %}
+    
+  </div>
+</div>
+  
+  
+<br />
+<div class="pagination">
+  <span class="step-links">
+    
+    {% if jobs.has_previous %}
+    <a
+      class="btn btn-info"
+      href="?page=1{% if request.GET.p %}&p={{ request.GET.p }}{% endif %}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+      >&laquo; First</a
+    >
+    <a
+      class="btn btn-danger"
+      href="?page={{ jobs.previous_page_number }}{% if request.GET.p %}&p={{ request.GET.p }}{% endif %}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+      >Prev</a
+    >
+    {% endif %}
+    <span class=" ms-5">
+      Page {{ jobs.number }} of {{ jobs.paginator.num_pages }}.
+    </span>
+    {% if jobs.has_next %}
+    <a
+      class="btn btn-success"
+      href="?page={{ jobs.next_page_number }}{% if request.GET.p %}&p={{ request.GET.p }}{% endif %}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+      >Next</a
+    >
+    <a
+      class="btn btn-primary"
+      href="?page={{ jobs.paginator.num_pages }}{% if request.GET.p %}&p={{ request.GET.p }}{% endif %}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+      >Last &raquo;</a
+    >
+    {% endif %}
+  </span>
+</div>
+
+{% else %}
+<div class="row">
+  <div class="col-sm-12 col-md-12 col-lg-12 mx-auto">
+    <div class="card card-signin my-5">
+      <div class="card-body">
+        <h5 class="card-title text-center">
+          <b>No relevant jobs found for this search term!</b><br />
+        </h5>
+        <hr my-2 />
+        <h5 class="card-title text-center"><b>Try a different search!</b><br /></h5>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %} {% endblock content %}

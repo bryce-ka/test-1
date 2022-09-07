@@ -1,0 +1,87 @@
+{% extends "base.html" %} {% load static %} {% load crispy_forms_tags %}
+{% block content %} <br /><br />
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          <h3 class="text-center">Your Profile Data</h3>
+          <hr class="my-4" />
+          <br />
+          <form class="form-signin">
+            <div class="form-group">
+              <p>Name: {{ profile.first_name }} {{ profile.last_name }}</p>
+              <p>Username: {{ profile.user_name }}</p>
+              <p>Email: {{ profile.email }}</p>
+              <p>Country: {{ profile.country.name}}</p>
+              <p>Location: 
+                {% if profile.location_other %}
+                {{ profile.location_other }}
+                {% else %}
+                {{ profile.location}}</p>
+                {% endif %}
+              <p>Role(s) Sought: {{ profile.role_sought }}</p>
+              <p>Looking For: {{ profile.desired_time }}</p>
+              <p>Desired Salary: {{ profile.desired_salary_range }}</p>
+              <p>Remote Capable: {{profile.remote_capable }}</p>
+              <P>Field Experience (Years): {{ profile.field_experience }}</P>
+              <p>PropTech Experience (Years): {{ profile.proptech_experience }}</p>
+              {% if profile.resume %}
+              <p>
+                Resume:
+                <a href="{{ profile.resume.url }}">Click to View/Download</a>
+              </p>
+              {% else %}
+              <p>Resume: Not Provided</p>
+              {% endif %} 
+              
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          <h3 class="text-center">Tech Experience</h3>
+          <hr class="my-4" />
+          <br />
+          <p>Programming Languagues: {{ profile.tech_lang }}</p>
+          <p>Cloud Services: {{ profile.tech_cloud }}</p>
+          
+      </div>
+    </div>
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          <h3 class="text-center">Sales Experience</h3>
+          <hr class="my-4" />
+          <br />
+          <p>Property Type: {{ profile.property_type }}</p>
+          
+      </div>
+    </div>
+    <div class="card card-signin my-5">
+      <div class="card-body">
+        {% if request.user == u %}
+        <hr class="my-4" />
+        <a
+          class="btn btn-warning btn-block"
+          href="{% url 'edit-profile' %}"
+          >Edit Profile</a
+        >
+
+        <a class="btn btn-primary btn-block" href="{% url 'saved-jobs' %}"
+          >Saved Jobs</a
+        >
+        <a
+          class="btn btn-success btn-block"
+          href="{% url 'applied-jobs' %}"
+          >Applied Jobs</a
+        >
+        {% endif %}
+        
+    </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

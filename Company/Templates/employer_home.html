@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row row-cols-1 row-cols-md-3 g-4 mt-5">
+    <!-- <div class="col">
+      <div class="card h-100">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Company Profile</h5>
+          <p class="card-text">Edit your company's profile. update stuff fill in rest of text.</p>
+          <a href="{% url 'detail-recruiters' %}" class="btn btn-primary btn-large text-center">
+            Company Profile
+          </a>
+        </div>
+      </div>
+    </div> -->
+    <div class="col">
+      <div class="card h-100">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Create a post</h5>
+          <p class="card-text">Looking for someone to get the job done? create a post to find the talent youre looking for!</p>
+          <a href="{% url 'add-job' %}" class="btn btn-primary btn-large text-center">
+            Create a post
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">View/edit posts</h5>
+          <p class="card-text">Need to update or change the details of a job? Click the link below to access your curent posts.</p>
+          <a href="{% url 'job-list' %}" class="btn btn-primary btn-large text-center">
+            View/edit posts
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">View Job Board</h5>
+          <p class="card-text"> Click the below to view the job board from the candidates point of view.</p>
+          <a href="{% url 'job-search-list' %}" class="btn btn-primary btn-large text-center">
+            View the Job Board
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

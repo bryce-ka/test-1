@@ -1,0 +1,52 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<div class="row row-cols-1 row-cols-md-3 g-4 mt-5">
+    <div class="col">
+      <div class="card h-100">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Profile</h5>
+          <p class="card-text">View/edit your profile.</p>
+          <a href="{% url 'my-profile' %}" class="btn btn-primary btn-large text-center">
+            Profile
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Search Jobs</h5>
+          <p class="card-text">Looking for for the perfect PropTech job? Click the link below to go to the Job board. </p>
+          <a href="/candidate/job/" class="btn btn-primary btn-large text-center">
+            Job Board
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">View your saved jobs </h5>
+          <p class="card-text">Click the link below to see the jobs you've saved.</p>
+          <a href="{% url 'saved-jobs' %}" class="btn btn-primary btn-large text-center">
+            Saved Jobs
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Applied Jobs</h5>
+          <p class="card-text"> Click the link below to view jobs youve applied to.</p>
+          <a href="{% url 'applied-jobs' %}" class="btn btn-primary btn-large text-center">
+            Applied Jobs
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+      <div class="hero-unit text-center">
+        <h1>Create an account</h1>
+        <p>click candidate or company below to create an account!</p>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title center">Candidate</h5>
+              <p class="card-text">A candidate account allows you to easily fill in personal information and see postings youve saved and interacted with.</p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#candidatemodal">
+                Create a Candidate account
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal -->
+      <div class="modal fade in" id="candidatemodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Candidate sign-up</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form method = "post" action =".">
+                {% csrf_token %}
+                {{ candidateForm|crispy }}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" name="candidate"  class="btn btn-primary"> Submit</button>
+            </div> </form>
+          </div>
+        </div>
+      </div>
+
+        <div class="col-sm-6">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title center">Recruiter</h5>
+              <p class="card-text">A Recruiter account allows you to make job posts and view applicants to find the right fit for your company.</p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#companymodal">
+                Create a Recruiter Account
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade in" id="companymodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Recruiter sign-up</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form method = "post" action =".">
+                {% csrf_token %}
+                {{ recruiterForm|crispy }}
+                
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" name="company"  class="btn btn-primary"> Submit</button>
+            </div> </form>
+          </div>
+        </div>
+      </div>
+      {% endblock %}

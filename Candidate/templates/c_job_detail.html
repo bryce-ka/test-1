@@ -1,0 +1,112 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<br /><br />
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-signin my-5">
+        
+          <div class = "card-header text-center">
+            <h2>
+            {{job.title}} - {{job.role_sought}}
+            </h2>
+            <p>{{job.company}}  | {% if job.location_other %} 
+                                  {{ job.location_other }}
+                                  {% else %}
+                                  {{ job.location}}
+                                  {% endif %}                   | {{job.job_type}}
+
+            </p>
+          </div>
+
+        <div class="card-body">
+          
+  
+
+        <div class="container text-left">
+          <div class="row align-items-start">
+            <div class="col">
+              <h5 class = "text-center">Description:</h5>
+              <p style="white-space: pre-wrap; font-size: 16px">
+                {{ job.description }}
+              </p>
+              {% if pe %}
+              <h6>Preffered Experience:</h6>
+              {% endif %}
+              {% if job.cloud %}
+              <p>Cloud Technologies: {{job.cloud}}</p>
+              {% endif %}
+              {% if job.languagues %}
+              <p>Programming Languauges: {{job.languagues}}</p>
+              {% endif %}
+              {% if job.property_type %}
+              <p>Property Type: {job.property_type}}</p>
+              {% endif %}
+
+              
+            </div>
+            <div class="col text-center">
+              <h5 class = "text-center">Additional Information</h5>
+              <p>recruiter: {{job.recruiter}}</p>
+              <p>role sought{% if job.role_sought_other %} 
+                {{ job.role_sought_other }}
+                {% else %}
+                {{ job.role_sought}}
+                {% endif %}</p>
+              <p>Salary Range: {{job.salary_range}}</p>
+              <p>Remote Capable: {{job.remote }}</p>
+              <p>Date Posted: {{job.date_posted }}</p>
+              <p>Last edited: {{ job.last_edit }}</p>
+              <hr>
+              <h5 class = "text-center">Company</h5>
+              <p>Location: {% if job.location_other %} 
+                {{ job.location_other }}
+                {% else %}
+                {{ job.location}}
+                {% endif %} 
+              </p>
+              <p>Funding Secured (Stage): {{job.funding_stage}}</p>
+              <p>Funding Secured (Amount): {{ job.funding_amount}}</p>
+            </div>
+          </div>
+        </div>
+
+          <hr my-2 />
+          <span style="font-size: 18px">
+          {% if job.link %}
+          <a class="btn btn-warning btn-lg" href="{{job.link}}"
+            ><b>Apply On Company's Website</b></a
+          >
+          {% else %} {% if not apply_button %} {% if profile.resume %}
+          <a
+            class="btn btn-warning btn-lg"
+            href="{% url 'apply-job' job.slug %}"
+            ><b>Apply Now</b></a
+          >
+          {%else %}
+          <a class="btn btn-danger btn-lg" href="{% url 'edit-profile' %}"
+            ><b>Add Resume to apply!</b></a
+          >
+          {%endif%} {% else %}
+          <a class="btn btn-success btn-lg" href="{% url 'applied-jobs' %}"
+            ><b>Applied!</b></a
+          >
+          {% endif %} {%endif%} {% if not save_button %}
+          <a
+            class="btn btn-primary btn-lg ml-2"
+            href="/candidate/job/{{job.slug}}/save"
+            ><b>Save</b></a
+          >
+          {% else %}
+          <a
+            class="btn btn-danger btn-lg ml-2"
+            href="/candidate/job/{{job.slug}}/remove"
+            ><b>Remove</b></a
+          >
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+
