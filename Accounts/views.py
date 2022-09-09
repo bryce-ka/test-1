@@ -15,6 +15,10 @@ from Accounts.models import CustomUser as Profile
 from Candidate.models import Skills 
 from Candidate.forms import NewSkillForm
 from django.utils.translation import gettext, gettext_lazy as lazy
+from django.shortcuts import render
+from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 def passwordsChangeView(PasswordChangeView):
     form_class = PasswordChangeView
@@ -146,3 +150,4 @@ def login_view(request):
             messages.error(request,"Invalid username or password.")
     form = AuthenticationForm()
     return render(request=request, template_name="registration/login.html", context={"login_form":form})  
+

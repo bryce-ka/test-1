@@ -8,11 +8,11 @@
     <div class="col-md-6">
       <div class="card card-signin my-2">
         <span class="ml-3 mt-3">
-          <a href="{% url 'job-detail' job.job.slug %}"
-            ><h4 class="text-dark">
+          <a href="{% url 'job-detail' job.job.slug %}">
+            <h4 class="text-dark">
               <b>{{job.job.title}} ({{job.job.job_type}})</b>
-            </h4></a
-          >
+            </h4>
+          </a>
           <p style="font-size: 17px">
             {{job.job.company}}<br />{{job.job.location}}
           </p>
@@ -22,9 +22,7 @@
           </p>
         </span>
         <div class="card-footer">
-          <span style="font-size: 14px"
-            >Posted on {{job.job.date_posted|date:"F d, Y"}}</span
-          >
+          <span style="font-size: 14px">Posted on {{job.job.date_posted|date:"F d, Y"}}</span>
         </div>
       </div>
     </div>

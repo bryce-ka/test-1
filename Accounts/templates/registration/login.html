@@ -3,8 +3,13 @@
 <h1>Login</h1>
 <form method="post">
   {% csrf_token %}{{form|crispy}}
-  <p class="text-center">Forgot password? <a href="{% url 'password_reset' %}">Reset</a>.</p>
+  <p >Forgot password? <a href="{% url 'password_reset' %}">Reset</a>.</p>
   <p>Don't have an account? Create one <a href="{% url 'register' %}">here</a>!</p>
+  <!-- <br>
+  <hr/> -->
+  <!-- <p><strong>-- OR --</strong></p>
+  <a href="{% url 'social:begin' 'linkedin' %}">Login with linkedin</a> <br/>
+
   <button type="submit" class="btn btn-success">Login</button>
-</form>
-{% endblock %}
+</form> -->
+{% endblock content %} 

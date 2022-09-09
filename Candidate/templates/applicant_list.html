@@ -33,15 +33,9 @@
         </span>
 
         <div class="card-footer">
-          <a
-            class="btn btn-success mr-2"
-            href="{% url 'select-applicant' can_id=profile.slug job_id=job.slug %}"
-            >Select
+          <a class="btn btn-success mr-2" href="{% url 'select-applicant' can_id=profile.slug job_id=job.slug %}">Select
           </a>
-          <a
-            class="btn btn-danger mr-2"
-            href="{% url 'remove-applicant' can_id=profile.slug job_id=job.slug %}"
-            >Reject
+          <a class="btn btn-danger mr-2" href="{% url 'remove-applicant' can_id=profile.slug job_id=job.slug %}">Reject
           </a>
         </div>
       </div>

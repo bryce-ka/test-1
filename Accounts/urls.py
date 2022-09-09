@@ -6,7 +6,8 @@ from django.contrib.auth import views as auth_views
 from .forms import AuthenticationForm, PasswordResetForm, SetPasswordForm, PasswordChangeForm
 
 urlpatterns = [
-path('', views.register_user, name = 'register'), 
+path('', include('Landing.urls')),
+path('register/', views.register_user, name = 'register'), 
 path('redirect/', views.redirect_account, name='account-redirect'),
 path('login/', auth_views.LoginView.as_view(form_class=AuthenticationForm, template_name='registration/login.html'), name='login'),
 path('logout/', LogoutView.as_view(template_name='registration/logout.html'), name='logout'),

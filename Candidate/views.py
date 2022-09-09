@@ -19,10 +19,7 @@ from django.core.paginator import Paginator
 from job_board.filters import OrderFilter
 
 def home(request):
-    context = {
-        'home_page': "active",
-    }
-    return render(request, 'cand_home.html', context)
+    return render(request, 'cand_home.html')
 
 def job_search_list(request):
 

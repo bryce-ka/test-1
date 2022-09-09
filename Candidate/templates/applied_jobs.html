@@ -8,11 +8,11 @@
     <div class="col-md-6">
       <div class="card card-signin my-2">
         <span class="ml-3 mt-3">
-          <a href="{% url 'job-detail' job.job.slug %}"
-            ><h4 class="text-dark">
+          <a href="{% url 'job-detail' job.job.slug %}">
+            <h4 class="text-dark">
               <b>{{job.job.title}} ({{job.job.job_type}})</b>
-            </h4></a
-          >
+            </h4>
+          </a>
           <p style="font-size: 17px">
             {{job.job.company}}<br />{{job.job.location}}
           </p>
@@ -23,20 +23,14 @@
         </span>
         <div class="card-footer">
           {% if status == 0 %}
-          <span style="font-size: 16px"
-            >Application Status:
-            <b class="text-success text-uppercase ml-2">Selected</b></span
-          >
+          <span style="font-size: 16px">Application Status:
+            <b class="text-success text-uppercase ml-2">Selected</b></span>
           {% elif status == 1 %}
-          <span style="font-size: 16px"
-            >Application Status:
-            <b class="text-primary text-uppercase ml-2">In Process</b></span
-          >
+          <span style="font-size: 16px">Application Status:
+            <b class="text-primary text-uppercase ml-2">In Process</b></span>
           {% else %}
-          <span style="font-size: 16px"
-            >Application Status:
-            <b class="text-danger text-uppercase ml-2">Rejected</b></span
-          >
+          <span style="font-size: 16px">Application Status:
+            <b class="text-danger text-uppercase ml-2">Rejected</b></span>
           {% endif %}
         </div>
       </div>

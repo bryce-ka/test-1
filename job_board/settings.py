@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'Landing.apps.LandingConfig',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'social_django',
     'crispy_bootstrap5',
     'django_filters',
     'gunicorn',
@@ -67,6 +68,28 @@ INSTALLED_APPS = [
 
 # CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 # CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+#social auth
+# SOCIAL_AUTH_STORAGE = 'social_django_mongoengine.models.DjangoStorage'
+# SOCIAL_AUTH_JSONFIELD_ENABLED = True
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.linkedin.LinkedinOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = '86udqx6lazv5yd'
+SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = 'HhBNhSf8x2Vp2CcE'
+SOCIAL_AUTH_LINKEDIN_OAUTH2_SCOPE = ['r_liteprofile','r_emailaddress']
+SOCIAL_AUTH_LINKEDIN_OAUTH2_FIELD_SELECTORS = ['emailAddress']
+SOCIAL_AUTH_LINKEDIN_OAUTH2_EXTRA_DATA = [('id', 'id'),
+                                          ('firstName', 'first_name'),
+                                          ('lastName', 'last_name'),
+                                          ('emailAddress', 'email_address')]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -93,6 +116,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',  # <-- social auth
+                'social_django.context_processors.login_redirect', # <-- social auth 
             ],
         },
     },
@@ -192,3 +217,4 @@ AUTH_USER_MODEL = 'Accounts.CustomUser'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/account/redirect/'
 LOGIN_URL = "/login/"
+LOGOUT_URL = '/landing/'
