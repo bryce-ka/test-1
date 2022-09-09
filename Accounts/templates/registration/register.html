@@ -7,9 +7,11 @@
       </div>
 
       <div class="row">
+
         <div class="col-sm-6">
           <div class="card text-center">
             <div class="card-body">
+              <img src="https://proptechjb.s3.us-east-2.amazonaws.com/4.png" class="card-img-top" alt="...">
               <h5 class="card-title center">Candidate</h5>
               <p class="card-text">A candidate account allows you to easily fill in personal information and see postings youve saved and interacted with.</p>
               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#candidatemodal">
@@ -43,6 +45,7 @@
         <div class="col-sm-6">
           <div class="card text-center">
             <div class="card-body">
+              <img src="https://proptechjb.s3.us-east-2.amazonaws.com/5.png" class="card-img-top" alt="...">
               <h5 class="card-title center">Recruiter</h5>
               <p class="card-text">A Recruiter account allows you to make job posts and view applicants to find the right fit for your company.</p>
               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#companymodal">
@@ -64,7 +67,7 @@
               <form method = "post" action =".">
                 {% csrf_token %}
                 {{ recruiterForm|crispy }}
-                
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
