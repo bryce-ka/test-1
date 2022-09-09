@@ -1,0 +1,101 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<br /><br />
+<div class="container">
+  {% if request.user == job.recruiter %}
+  <br /><br />
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-signin my-5">
+        
+          <div class = "card-header text-center">
+            <h2>
+            {{job.title}} - {{job.role_sought}}
+            </h2>
+            <p>{{job.company}}  | {% if job.location_other %} 
+                                  {{ job.location_other }}
+                                  {% else %}
+                                  {{ job.location}}
+                                  {% endif %}                   | {{job.job_type}}
+
+            </p>
+          </div>
+
+        <div class="card-body">
+          
+  
+
+        <div class="container text-left">
+          <div class="row align-items-start">
+            <div class="col">
+              <h5 class = "text-center">Description:</h5>
+              <p style="white-space: pre-wrap; font-size: 16px">
+                {{ job.description }}
+              </p>
+              
+              <h6>Preffered Experience:</h6>
+              {% if job.cloud %}
+              <p>Cloud Technologies: {{job.cloud}}</p>
+              {% endif %}
+              {% if job.languagues %}
+              <p>Programming Languauges: {{job.languagues}}</p>
+              {% endif %}
+              {% if job.property_type %}
+              <p>Property Type: {job.property_type}}</p>
+              {% endif %}
+
+              
+            </div>
+            <div class="col text-center">
+              <h5>Additional Information</h5>
+              <p>recruiter: {{job.recruiter}}</p>
+              <p>role sought{% if job.role_sought_other %} 
+                {{ job.role_sought_other }}
+                {% else %}
+                {{ job.role_sought}}
+                {% endif %}</p>
+              <p>Salary Range: {{job.salary_range}}</p>
+              <p>Remote Capable: {{job.remote }}</p>
+              <p>Date Posted: {{job.date_posted }}</p>
+              <p>Last edited: {{ job.last_edit }}</p>
+              <hr>
+              <h5>Company</h5>
+              <p>Location: {% if job.location_other %} 
+                {{ job.location_other }}
+                {% else %}
+                {{ job.location}}
+                {% endif %} 
+              </p>
+              <p>Funding Secured (Stage): {{job.funding_stage}}</p>
+              <p>Funding Secured (Amount): {{ job.funding_amount}}</p>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <a
+        class="btn btn-warning btn-lg mr-2"
+        href="{% url 'edit-job-post' job.slug %}"
+        ><b>Edit Job Post</b></a
+      > <a
+      class="btn btn-warning btn-lg mr-2"
+      href="{% url 'job-candidate-search' job.slug %}"
+      ><b>View applications</b></a
+    >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% else %}
+  <div class="row">
+    <div class="col-sm-12 col-md-10 col-lg-8 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          <h3 class="text-center">You do not have access to this page!</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock content %}
