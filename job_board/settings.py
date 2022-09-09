@@ -40,7 +40,7 @@ if 'SECRET_KEY' in os.environ:
 
 
 
-ALLOWED_HOSTS = ["https://proptechjb.herokuapp.com", 'http://gettingstartedapp-env.eba-unmzzu5j.us-east-2.elasticbeanstalk.com/', 'bryceka.dcreate.domains', '127.0.0.1']
+ALLOWED_HOSTS = ["proptechjb.herokuapp.com", 'http://gettingstartedapp-env.eba-unmzzu5j.us-east-2.elasticbeanstalk.com/', 'bryceka.dcreate.domains', '127.0.0.1']
 
 
 
