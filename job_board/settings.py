@@ -39,13 +39,10 @@ if 'SECRET_KEY' in os.environ:
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-if IS_HEROKU:
 
-    ALLOWED_HOSTS = ['http://gettingstartedapp-env.eba-unmzzu5j.us-east-2.elasticbeanstalk.com/'
-    , '127.0.0.1']
+ALLOWED_HOSTS = ['http://gettingstartedapp-env.eba-unmzzu5j.us-east-2.elasticbeanstalk.com/', 'bryceka.dcreate.domains', '127.0.0.1']
 
-else:
-    ALLOWED_HOSTS = []
+
 
 DEBUG = True
 
@@ -64,7 +61,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'crispy_bootstrap5',
-    'django_filters', 
+    'django_filters',
     'gunicorn',
 ]
 
@@ -170,22 +167,22 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
 
 
-# # Test Runner Config
-# class HerokuDiscoverRunner(DiscoverRunner):
-#     """Test Runner for Heroku CI, which provides a database for you.
-#     This requires you to set the TEST database (done for you by settings().)"""
+# Test Runner Config
+class HerokuDiscoverRunner(DiscoverRunner):
+    """Test Runner for Heroku CI, which provides a database for you.
+    This requires you to set the TEST database (done for you by settings().)"""
 
-#     def setup_databases(self, **kwargs):
-#         self.keepdb = True
-#         return super(HerokuDiscoverRunner, self).setup_databases(**kwargs)
+    def setup_databases(self, **kwargs):
+        self.keepdb = True
+        return super(HerokuDiscoverRunner, self).setup_databases(**kwargs)
 
 
-# # Use HerokuDiscoverRunner on Heroku CI
-# if "CI" in os.environ:
-#     TEST_RUNNER = "gettingstarted.settings.HerokuDiscoverRunner"
+# Use HerokuDiscoverRunner on Heroku CI
+if "CI" in os.environ:
+    TEST_RUNNER = "gettingstarted.settings.HerokuDiscoverRunner"
 
 # # Default primary key field type
 # # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
